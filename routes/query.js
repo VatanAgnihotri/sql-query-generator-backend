@@ -4,7 +4,8 @@ const { createSQLQuery } = require("sql-ai-query-generator");
 
 router.post("/", async function (req, res, next) {
   try {
-    const { API_KEY, ENGINE, QUERY } = req.body.data;
+    const { API_KEY, ENGINE } = process.env;
+    const { QUERY } = req.body;
     console.log(`Query`, QUERY);
     if (typeof QUERY !== "string" || QUERY.trim() === "")
       return res.status(500).send({ error: "Please provide a valid Input " });
